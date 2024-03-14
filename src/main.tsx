@@ -1,8 +1,8 @@
-import React, { lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 // import App from './App.tsx';
 import './index.css';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, defer } from 'react-router-dom';
 // import { Menu } from './pages/Menu/Menu';
 import { Cart } from './pages/Cart/Cart';
 import { Error } from './pages/Error/Error';
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: '/',
-				element: <Menu />
+				element: <Suspense fallback={<>Загрузка...</>}><Menu /></Suspense>
 			},
 			{
 				path: '/cart',
@@ -30,8 +30,24 @@ const router = createBrowserRouter([
 				element: <Product />,
 				errorElement: <>Ошибка</>,
 				loader: async ({ params }) => {
-					const { data } = await axios.get(`https://6396dca824fa79e2.mokky.dev/products/${params.id}`);
-					return data;
+					return defer({
+						data: new Promise((resolve, reject) => {
+							setTimeout(() => {
+								axios.get(`https://6396dca824fa79e2.mokky.dev/products/${params.id}`).then(data => resolve(data)).catch(e => reject(e));
+							}, 2000);
+						})
+					});
+					// return defer({
+					// 	data: axios.get(`https://6396dca824fa79e2.mokky.dev/products/${params.id}`).then(data => data)
+					// });
+
+					// await new Promise<void>((resolve) => {
+					// 	setTimeout(() => {
+					// 		resolve();
+					// 	}, 2000);
+					// });
+					// const { data } = await axios.get(`https://6396dca824fa79e2.mokky.dev/products/${params.id}`);
+					// return data;
 				}
 			}
 		]
