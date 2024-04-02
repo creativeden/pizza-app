@@ -9,6 +9,9 @@ import { Error } from './pages/Error/Error';
 import { Layout } from './layout/Menu/Layout';
 import { Product } from './pages/Product/Product';
 import axios from 'axios';
+import { AuthLayout } from './layout/Auth/AuthLayout';
+import { Login } from './pages/Login/Login';
+import { Register } from './pages/Register/Register';
 
 const Menu = lazy(() => import('./pages/Menu/Menu'));
 
@@ -49,6 +52,19 @@ const router = createBrowserRouter([
 					// const { data } = await axios.get(`https://6396dca824fa79e2.mokky.dev/products/${params.id}`);
 					// return data;
 				}
+			}
+		]
+	},
+	{
+		path: '/auth',
+		element: <AuthLayout />,
+		children: [
+			{
+				path: 'login',
+				element: <Login />
+			}, {
+				path: 'register',
+				element: <Register />
 			}
 		]
 	},
