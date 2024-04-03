@@ -1,9 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
-// import App from './App.tsx';
 import './index.css';
 import { RouterProvider, createBrowserRouter, defer } from 'react-router-dom';
-// import { Menu } from './pages/Menu/Menu';
 import { Cart } from './pages/Cart/Cart';
 import { Error } from './pages/Error/Error';
 import { Layout } from './layout/Menu/Layout';
@@ -12,13 +10,14 @@ import axios from 'axios';
 import { AuthLayout } from './layout/Auth/AuthLayout';
 import { Login } from './pages/Login/Login';
 import { Register } from './pages/Register/Register';
+import { RequireAuth } from './helpers/RequreAuth';
 
 const Menu = lazy(() => import('./pages/Menu/Menu'));
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <Layout />,
+		element: <RequireAuth><Layout /></RequireAuth>,
 		children: [
 			{
 				path: '/',
