@@ -55,7 +55,7 @@ export function Menu() {
 		<div>
 			{error && <>{error}</>}
 			{!isLoading && <MenuList products={products} />}
-			{isLoading && <>Загружаем продукты...</>}
+			{isLoading && <>Loading products...</>}
 		</div>
 	</>;
 }

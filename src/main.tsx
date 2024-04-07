@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: '/',
-				element: <Suspense fallback={<>Загрузка...</>}><Menu /></Suspense>
+				element: <Suspense fallback={<>Loading...</>}><Menu /></Suspense>
 			},
 			{
 				path: '/cart',
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
 			{
 				path: '/product/:id',
 				element: <Product />,
-				errorElement: <>Ошибка</>,
+				errorElement: <>Error</>,
 				loader: async ({ params }) => {
 					return defer({
 						data: new Promise((resolve, reject) => {
