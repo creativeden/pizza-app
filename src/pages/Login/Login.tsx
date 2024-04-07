@@ -39,7 +39,6 @@ export function Login() {
 				password
 			});
 			console.log(data);
-			localStorage.setItem('jwt', data.token);
 			dispatch(userActions.addJwt(data.token));
 			navigate('/');
 		} catch (e) {
