@@ -5,6 +5,7 @@ import CartItem from '../../components/CartItem/CartItem';
 import { useEffect, useState } from 'react';
 import { Product } from '../../interfaces/product.interface';
 import axios from 'axios';
+import styles from './Cart.module.css';
 
 export function Cart() {
 	const [cartProducts, setCartProducts] = useState<Product[]>([]);
@@ -25,13 +26,13 @@ export function Cart() {
 	}, [items]);
 
 	return <>
-		<Headling>Cart</Headling>
+		<Headling className={styles['headling']}>Cart</Headling>
 		{items.map(i => {
 			const product = cartProducts.find(p => p.id === i.id);
 			if (!product) {
 				return;
 			}
-			return <CartItem count={i.count} {...product} />;
+			return <CartItem key={product.id} count={i.count} {...product} />;
 		})}
 	</>;
 }
