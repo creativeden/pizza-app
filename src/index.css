@@ -1,5 +1,5 @@
 :root {
-    --font: 'Open Sans', sans-serif;
+    --font: 'Fira Sans', sans-serif;
     --primary-color: #FE724C;
     --primary-hover-color: #DF6442;
     --text-color: #000000;
@@ -9,6 +9,6 @@
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--font);
     margin: 0;
 }
