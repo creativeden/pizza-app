@@ -28,3 +28,17 @@
     color: var(--text-color);
     font-size: 19px;
 }
+
+.total-count {
+    color: #BEBEBE;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.chekout {
+    max-width: 512px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+}
