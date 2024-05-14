@@ -1,6 +1,7 @@
 import { Await, useLoaderData } from 'react-router-dom';
 import { Product } from '../../interfaces/product.interface';
 import { Suspense } from 'react';
+import Headling from '../../components/Headling/Headling';
 
 export function Product() {
 	const data = useLoaderData() as { data: Product };
@@ -11,7 +12,13 @@ export function Product() {
 				resolve={data.data}
 			>
 				{({ data }: { data: Product }) => (
-					<>Product - {data.name}</>
+					<>
+						<div><img src={data.image} alt="..." /></div>
+						<Headling>{data.name}</Headling>
+						<div>Price - {data.price}</div>
+						<div>Rating - {data.rating}</div>
+						<div>Ingredients - {data.ingredients.join(', ')}</div>
+					</>
 				)}
 			</Await>
 		</Suspense>
